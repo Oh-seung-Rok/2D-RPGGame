@@ -10,6 +10,12 @@ public class MovingObject1 : MonoBehaviour
     public float speed;
     public int walkCount;
     private int currentWalkCount;
+    public string walkSound_1;
+    public string walkSound_2;
+    public string walkSound_3;
+    public string walkSound_4;
+
+    AudioManager theAudio;
 
     private Vector3 vector;
 
@@ -29,6 +35,7 @@ public class MovingObject1 : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
             boxCollider = GetComponent<BoxCollider2D>();
             animator = GetComponent<Animator>();
+            theAudio = FindObjectOfType<AudioManager>();
             instance = this;
         }
         else
@@ -59,7 +66,6 @@ public class MovingObject1 : MonoBehaviour
 
             animator.SetFloat("DirX", vector.x);
             animator.SetFloat("DirY", vector.y);
-            animator.SetBool("Walking", true);
 
             RaycastHit2D hit;
             Vector2 start = transform.position;
@@ -72,26 +78,40 @@ public class MovingObject1 : MonoBehaviour
             if (hit.transform != null)
                 break;
 
+            animator.SetBool("Walking", true);
+
+            int temp = Random.Range(1, 4);
+            switch (temp)
+            {
+                case 1:
+                    theAudio.Play(walkSound_1);
+                    break;
+                case 2:
+                    theAudio.Play(walkSound_2);
+                    break;
+                case 3:
+                    theAudio.Play(walkSound_3);
+                    break;
+                case 4:
+                    theAudio.Play(walkSound_4);
+                    break;
+            }
+
             while (currentWalkCount < walkCount)
             {
+                if (vector.x != 0)
+                {
+                    transform.Translate(vector.x * (speed + applyRunSpeed), 0, 0);
+                }
+                else if (vector.y != 0)
+                {
+                    transform.Translate(0, vector.y * (speed + applyRunSpeed), 0);
+                }
 
-                transform.Translate(vector.x * (speed + applyRunSpeed), vector.y * (speed + applyRunSpeed), 0);
                 if (applyRunFlag)
                     currentWalkCount++;
                 currentWalkCount++;
                 yield return new WaitForSeconds(0.01f);
-
-                //if(currentWalkCount % 9 == 2)
-                //{
-                //    int temp = Random.Range(1, 2);
-                //    switch(temp)
-                //    {
-                //        case 1:
-                //            break;
-                //        case 2:
-                //            break;
-                //    }
-                //}
             }
             currentWalkCount = 0;
 

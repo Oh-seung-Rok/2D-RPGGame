@@ -2162,12 +2162,14 @@ MonoBehaviour:
   currentMapName: 
   speed: 2.4
   walkCount: 20
+  walkSound_1: footsteps 1
+  walkSound_2: footsteps 2
+  walkSound_3: footsteps 3
+  walkSound_4: footsteps 4
   boxCollider: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  walkSound_1: {fileID: 8300000, guid: f4bc9f0dc3b5a8d44b8b26b7037f2df5, type: 3}
-  walkSound_2: {fileID: 8300000, guid: 3815ac593c7329942b9979f270f55470, type: 3}
   runSpeed: 2.4
 --- !u!95 &1746319345
 Animator:
@@ -2673,7 +2675,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e3c08560a58c443905bdd8872cb978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: footsteps 1
+    clip: {fileID: 8300000, guid: f4bc9f0dc3b5a8d44b8b26b7037f2df5, type: 3}
+    Volumn: 1
+    loop: 0
+  - name: footsteps 2
+    clip: {fileID: 8300000, guid: 3815ac593c7329942b9979f270f55470, type: 3}
+    Volumn: 1
+    loop: 0
+  - name: footsteps 3
+    clip: {fileID: 8300000, guid: 3066da6eaa58bcb48b416f1a6f9bab5c, type: 3}
+    Volumn: 1
+    loop: 0
+  - name: footsteps 4
+    clip: {fileID: 8300000, guid: 24d812f3be4133e4c9319fe6e8c0314b, type: 3}
+    Volumn: 1
+    loop: 0
 --- !u!4 &2051731654
 Transform:
   m_ObjectHideFlags: 0
